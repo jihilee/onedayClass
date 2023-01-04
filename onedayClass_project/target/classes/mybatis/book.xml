@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+	<mapper namespace="book.model.Book">
+		
+		<insert id="insertBook">
+			insert into book values(#{b_num}, #{b_person},#{b_cname},
+			sysdate,#{b_day},#{b_stime},#{b_etime},#{b_price},#{b_people},0,#{b_paying},'','')
+		</insert>
+		
+		<select id="getBookListAboutTime" resultType="book.model.BookBean">
+			select to_char(b_day,'yy/MM/dd') as b_day,
+				to_char(b_stime,'HH24:mi') as b_stime,
+				to_char(b_etime,'HH24:mi')as b_etime 
+			from book
+		</select>
+		
+		<select id="getSelectB_dayDul" resultType="book.model.TimetableBean">
+			select
+				to_char(t_stime,'HH24:mi') as t_stime,
+				to_char(t_etime,'HH24:mi') as t_etime
+			from timetable
+			where t_day = #{t_day}
+		</select>
+		
+		<select id="getBookListById" resultType="book.model.BookBean">
+			select b_num,b_person,b_cname,b_price,b_people,b_check,b_paying,
+			to_char(b_reserDay,'yy/MM/dd') as b_reserDay,
+			to_char(b_day,'yy/MM/dd') as b_day,
+			to_char(b_stime,'HH24:mi') as b_stime,
+			to_char(b_etime,'HH24:mi') as b_etime,
+			(b_day-sysdate) as dday
+			from book 
+			where b_person= #{b_person}
+			order by dday desc
+		</select>
+		
+		<select id="getBookDetailByBnum" resultType="book.model.BookBean">
+			select b_num,b_person,b_cname,b_price,b_people,b_check,b_paying,
+			to_char(b_reserDay,'yy/MM/dd') as b_reserDay,
+			to_char(b_day,'yy/MM/dd') as b_day,
+			to_char(b_stime,'HH24:mi') as b_stime,
+			to_char(b_etime,'HH24:mi') as b_etime,
+			(b_day-sysdate) as dday
+			from book where b_num = #{b_num}
+		</select>
+		
+ 		<insert id="timetableInsert">
+ 			insert into timetable values(ttseq.nextval,#{t_cname},#{t_day},#{t_stime},#{t_etime},0)
+ 		</insert>
+ 		
+ 		<select id="getTotalTimeTable" resultType="int">
+ 			select count(*) from timetable 
+ 			<if test="whatColumn == 't_cname'">
+	         where t_cname like #{keyword}
+	      	</if>
+ 			<if test="whatColumn == 't_day'">
+	         where t_day like #{keyword}
+	      	</if>
+ 		</select>
+ 		
+ 		<select id="getTbList" resultType="book.model.TimetableBean">
+ 			select t_num,t_cname,
+ 			to_char(t_day,'yy/MM/dd') as t_day,
+ 			to_char(t_stime,'HH24:mi') as t_stime,
+ 			to_char(t_etime,'HH24:mi') as t_etime,
+ 			t_check 
+ 			from timetable 
+ 			<if test="whatColumn == 't_cname'">
+	         where t_cname like #{keyword}
+	      	</if>
+ 			<if test="whatColumn == 't_day'">
+	         where t_day like #{keyword}
+	      	</if>
+	      	order by t_day desc, t_stime
+ 		</select>
+ 		
+ 		<select id="getTtByCnameBday" resultType="book.model.TimetableBean">
+ 			select t_num,t_cname,
+ 			to_char(t_day,'yy/MM/dd') as t_day,
+ 			to_char(t_stime,'HH24:mi') as t_stime,
+ 			to_char(t_etime,'HH24:mi') as t_etime,
+ 			t_check 
+ 			from timetable
+ 			where t_cname=#{t_cname} and t_day = #{t_day} and t_check=0
+ 		</select>
+ 		
+ 		<select id="getBookList" resultType="book.model.BookBean">
+ 			select * from book 
+ 			<if test="whatColumn == 'b_person'">
+ 				where b_person like #{keyword}
+ 			</if>
+ 			<if test="whatColumn == 'b_cname'">
+ 				where b_cname like #{keyword}
+ 			</if>
+ 			<if test="whatColumn == 'b_day'">
+ 				where b_day like #{keyword}
+ 			</if>
+ 			order by b_reserday desc
+ 		</select>
+ 		
+ 		<select id="getTTByNum" resultType="book.model.TimetableBean">
+ 			select * from timetable where t_num = #{t_num}
+ 		</select>
+ 		
+ 		<update id="timetableUpdate">
+ 			update timetable 
+ 			set t_day = #{t_day}, 
+ 			t_stime = #{t_stime},
+ 			t_etime = #{t_etime}
+ 			where t_num = #{t_num} and t_cname = #{t_cname}
+ 		</update>
+ 		
+ 		<update id="updateBcheckByNum">
+ 			update book
+ 			set b_check = 1
+ 			where b_num = #{b_num}
+ 		</update>
+ 		
+ 		<update id="updateTcheckByNum">
+ 			update timetable
+ 			set t_check = 1
+ 			where t_num = #{t_num}
+ 		</update>
+ 		
+ 		<select id="getTcheckByNum" resultType="String">
+ 			select b_check from book where b_num = #{b_num}
+ 		</select>
+ 		
+ 		<select id="getTotalBookList" resultType="int">
+ 			select count(*) from book
+ 			<if test="whatColumn == 'b_person'">
+ 				where b_person like #{keyword}
+ 			</if>
+ 			<if test="whatColumn == 'b_cname'">
+ 				where b_cname like #{keyword}
+ 			</if>
+ 			<if test="whatColumn == 'b_day'">
+ 				where b_day like #{keyword}
+ 			</if>
+ 		</select>
+ 		
+	</mapper>

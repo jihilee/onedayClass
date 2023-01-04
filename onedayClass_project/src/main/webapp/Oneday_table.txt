@@ -1,0 +1,312 @@
+--member1
+
+drop sequence memseq;
+create sequence memseq
+increment by 1
+start with 1
+nocache;
+
+drop table member cascade constraints;
+
+create table member( 
+   num number primary key, --class chost, host hcode
+   name varchar2(50) not null, --review reviewer
+   id varchar2(50) not null,
+   pw varchar2(50) not null,
+   email varchar2(50) not null,
+   ph varchar2(50),
+   pt varchar2(60),
+   point number default 0
+);
+
+insert into member values(m_seq.nextval, '관리자', 'admin', '0000', 'leetester124@gmail.com', '010-1234-1234', null ,0);
+insert into member values(m_seq.nextval, '사용자', 'aaa', '0000', 'aaa@naver.com', '010-1234-1234', null ,0);
+insert into member values(m_seq.nextval, '이지희', 'lee', '0000', 'leejh129624@naver.com', '010-1234-1234', null ,0);
+
+commit;
+
+col num for 99
+col name for a8
+col id for a7
+col pw for a6
+col email for a15
+col ph for a8
+col pt for a8
+col point for 99
+select * from member;
+
+
+
+--class2
+
+drop sequence clsseq;
+create sequence clsseq
+increment by 1
+start with 1
+nocache;
+
+drop table cls cascade constraints;
+
+create table cls( 
+   cnum number primary key, --host hclass
+   cname varchar2(100) not null, --review cname
+   ctime number not null,
+   caddress varchar2(50) default '서울특별시 마포구 월드컵로7길 122',
+   clocation varchar2(50) default '37.55174, 126.90572',
+   cprice varchar2(10) not null,
+   cinfo varchar2(900) not null,
+   ccontent varchar2(900),
+   cimage1 varchar2(50),
+   cimage2 varchar2(50),
+   cimage3 varchar2(50)
+);
+
+insert into cls values(clsseq.nextval,'버터나이프 목공 힐링 체험', 120,
+'서울특별시 마포구 월드컵로7길 122','37.55174, 126.90572','50000',
+'이번에 진행할 클래스는 세상에서 제일 예쁜 버터나이프 or 우드포크 만들기 입니다',
+'사각사각, 나무를 깎는 소리와 조각에 집중하다보면 어느새 마음이 편안해지는 경험을 하실거에요','나이프1.jpg','나이프2.jpg','나이프3.jpg');
+
+insert into cls values(clsseq.nextval,'나무로 수저 목공 힐링 체험 프로그램', 120,
+'서울특별시 마포구 월드컵로7길 122','37.55174, 126.90572','55000',
+'이번에 진행할 클래스는 세상에서 제일 예쁜 숫가락 or 젓가락 만들기 입니다',
+'목공이 처음이라도 걱정하지 마세요! 공방장이 옆에서 차근차근 도와드립니다:D','수저1.jpg','수저2.jpg','수저3.jpg');
+
+insert into cls values(clsseq.nextval,'무엇을 올려도 감각적인, 감성 도마 만들기', 180,
+'서울특별시 마포구 월드컵로7길 122','37.55174, 126.90572','65000',
+'가장 인기가 많은 월넛 원목으로 여러분이 원하는 모양의 도마를 직접 디자인하여 만듭니다.',
+'선택하신 디자인에 따라 시간이 더 소요될 수 있으니 클래스 이후의 일정을 잡으실 때 참고 부탁드립니다.','도마1.jpg','도마2.jpg','도마3.jpg');
+
+insert into cls values(clsseq.nextval,'깨지지 않는 나무 반지 만들기', 120,
+'서울특별시 마포구 월드컵로7길 122','37.55174, 126.90572','45000',
+'나무가 주는 따뜻함을 사랑하는 사람과 함께 느껴보세요',
+'직접 나무를 만지고 느끼며 힐링하는 목공체험 내 손으로 직접 만들어서 더 이뻐요','반지1.jpg','반지2.jpg','반지3.jpg');
+
+insert into cls values(clsseq.nextval,'활용도 만점 원목 스툴 겸 협탁 만들기', 240,
+'서울특별시 마포구 월드컵로7길 122','37.55174, 126.90572','150000',
+'짧은 시간이긴 하지만, 가구 제작의 전반적인 과정을 경험해보실 수 있게 구성된 원데이 클래스에요',
+'어딘가 편안해지는 나무 특유의 향기와 함께 다양한 장비가 구비 널찍한 공간에 나만의 스툴을 만들어보세요!','의자1.jpg','의자2.jpg','의자3.jpg');
+
+insert into cls values(clsseq.nextval,'세상에 단 하나뿐인 도장 만들기', 60,
+'서울특별시 마포구 월드컵로7길 122','37.55174, 126.90572','40000',
+'세상에 단 하나뿐인, 나만의 도장을 가져보고 싶지 않으신가요?',
+'연인, 부모님 등 소중한 분들에게 내가 직접 만든 도장을 선물해 보시는 건 어떨까요?','도장1.jpg','도장2.jpg','도장3.jpg');
+
+
+
+commit;
+
+
+--bcate4
+
+drop sequence bcateseq;
+create sequence bcateseq
+increment by 1
+start with 1
+nocache;
+
+drop table bcate cascade constraints;
+
+create table bcate( 
+	bcatenum number, 
+    bcate varchar2(20) primary key,
+    bcateimg varchar2(100)
+);
+
+commit;
+
+insert into bcate values(bcateseq.nextval,'아웃도어','아웃도어.jpg');
+insert into bcate values(bcateseq.nextval,'공예DIY','공예DIY.jpg');
+insert into bcate values(bcateseq.nextval,'요리','요리.jpg');
+insert into bcate values(bcateseq.nextval,'문화예술','문화예술.jpg');
+insert into bcate values(bcateseq.nextval,'여행','여행.jpg');
+
+
+--scate8
+
+drop sequence scateseq;
+create sequence scateseq
+increment by 1
+start with 1
+nocache;
+
+drop table scate cascade constraints;
+
+create table scate( 
+   scatenum number primary key,
+   bcate varchar2(50) REFERENCES bcate(bcate),
+   scate varchar2(50) --class code
+);
+
+
+insert into scate values(scateseq.nextval, '아웃도어','서핑');
+insert into scate values(scateseq.nextval, '아웃도어','보드');
+insert into scate values(scateseq.nextval, '아웃도어','스키');
+insert into scate values(scateseq.nextval, '아웃도어','패러글라이딩');
+
+insert into scate values(scateseq.nextval, '공예DIY','가죽');
+insert into scate values(scateseq.nextval, '공예DIY','도자기');
+insert into scate values(scateseq.nextval, '공예DIY','플라워');
+insert into scate values(scateseq.nextval, '공예DIY','목공');
+insert into scate values(scateseq.nextval, '공예DIY','캔들');
+insert into scate values(scateseq.nextval, '공예DIY','비누');
+insert into scate values(scateseq.nextval, '공예DIY','향수');
+
+insert into scate values(scateseq.nextval, '요리','양식');
+insert into scate values(scateseq.nextval, '요리','한식');
+insert into scate values(scateseq.nextval, '요리','베이킹');
+
+insert into scate values(scateseq.nextval, '문화예술','미술');
+insert into scate values(scateseq.nextval, '문화예술','댄스');
+insert into scate values(scateseq.nextval, '문화예술','악기');
+insert into scate values(scateseq.nextval, '문화예술','사진');
+
+insert into scate values(scateseq.nextval, '여행','체험');
+insert into scate values(scateseq.nextval, '여행','투어');
+commit;
+
+
+--review5
+
+drop sequence rv_seq;
+create sequence rv_seq
+increment by 1
+start with 1
+nocache;
+
+drop table review cascade constraints;
+create table review( 
+   rnum number primary key,
+   bnum number references book(b_num) on delete cascade,
+   reviewer varchar2(50) not null,--member name
+   rday varchar2(50) not null, --book 
+   rimage varchar2(200),
+   rcontent varchar2(900),
+   ref number default 0, --r_review
+   re_step number default 0,
+   re_level number default 0
+);
+
+commit;
+
+
+--board6
+
+drop sequence boardseq;
+create sequence boardseq
+increment by 1
+start with 1
+nocache;
+
+drop table board cascade constraints;
+
+create table board( 
+   num number not null primary key, 
+   name varchar2(50) not null,
+   email varchar2(100) not null,
+   subject varchar2(2000) default '비회원 문의사항입니다' not null,
+   content varchar2(4000) not null,
+   pw varchar2(120) not null,
+   reg_date timestamp not null,
+   ref number not null,
+   re_step number not null,re_level number not null,
+   ck varchar2(10) default '0' --check
+);
+
+
+commit;
+
+--댓글
+
+[댓글]
+
+drop sequence com_seq;
+create sequence com_seq
+increment by 1
+start with 1
+minvalue 1
+nocache;
+
+
+DROP TABLE comments CASCADE CONSTRAINTS;
+create table comments( 
+   cno number primary key,--댓글 시퀀스
+   wno number references write(wno) on delete cascade, -- 게시글 시퀀스
+   mno number references members(no) on delete cascade, -- 회원 시퀀스
+   c_contents varchar2(300) not null,
+   c_upload_date date default sysdate, --게시일
+   ref number default 0, -- 대댓글
+   re_step number default 0,
+   re_level number default 0
+);
+commit;
+
+insert into comments(cno,wno,mno,c_contents,ref) values(com_seq.nextval,1,2,'좋아요',com_seq.currval);
+insert into comments(cno,wno,mno,c_contents,ref) values(com_seq.nextval,1,3,'싫어요',com_seq.currval);
+insert into comments(cno,wno,mno,c_contents,ref) values(com_seq.nextval,2,1,'슬퍼요',com_seq.currval);
+insert into comments(cno,wno,mno,c_contents,ref) values(com_seq.nextval,1,2,'기뻐요',com_seq.currval);
+insert into comments(cno,wno,mno,c_contents,ref) values(com_seq.nextval,2,4,'좋아요',com_seq.currval);
+commit;
+
+
+--book7
+
+drop sequence bookseq;
+create sequence bookseq
+increment by 1
+start with 1
+nocache;
+
+drop table book cascade constraints;
+create table book(
+      b_num number primary key,
+      b_person varchar2(30) not null, --memberid
+      b_cname varchar2(100) not null,
+      b_reserDay date default sysdate,
+      b_day timestamp not null,
+      b_stime timestamp default sysdate,
+      b_etime timestamp default sysdate,
+      b_price number not null,
+      b_people number default 1,
+      b_check number default 0, --bookcheck
+      b_paying varchar2(100) not null,
+      b_point number default 0,
+      b_cp varchar2(50)
+);
+
+--timetable
+
+drop sequence ttseq;
+create sequence ttseq
+increment by 1
+start with 1
+nocache;
+
+drop table timetable cascade constraints;
+create table timetable(
+      t_num number primary key, 
+      t_cname varchar2(100) not null, --class num
+      t_day timestamp not null,
+      t_stime timestamp default sysdate,
+      t_etime timestamp default sysdate,
+      t_check number default 0 --bookcheck 예약되면 1
+);
+
+commit;
+
+--cp9 쿠폰
+
+drop sequence cpseq;
+create sequence cpseq
+increment by 1
+start with 1
+nocache;
+
+drop table cp cascade constraints;
+create table cp(
+      cpnum number primary key,
+      cpname varchar2(30) not null,
+      cprice number not null,
+      enabled number default 0
+);
+
+commit;

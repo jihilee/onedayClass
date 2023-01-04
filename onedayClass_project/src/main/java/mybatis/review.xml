@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="review.model.Review">
+  	
+ 		<insert id="insertReview">
+ 			insert into review values(rv_seq.nextval,#{bnum},#{reviewer}, to_char(sysdate,'yy/MM/dd hh24:mi'), #{rimage}, #{rcontent}, 0, 0, 0)
+ 		</insert>
+ 		
+  		<select id="getAllReviewById" resultType="review.model.ReviewBean">
+ 			select rnum,bnum,reviewer,rday,rimage,rcontent,ref,re_step,re_level,
+ 				   b_cname, to_char(b_day,'yy/MM/dd') as b_day,
+							to_char(b_stime,'HH24:mi') as b_stime,
+							to_char(b_etime,'HH24:mi')as b_etime 
+ 			from review, book
+ 			where book.b_num = review.bnum and reviewer = #{reviewer}
+ 			order by rday desc
+  		</select>
+  		
+  		<delete id="deleteReview">
+  			delete from review where rnum = #{rnum}
+  		</delete>
+  		
+  		<select id="getAllReviewByCls" resultType="review.model.ReviewBean">
+  			select rnum,bnum,reviewer,rday,rimage,rcontent,ref,re_step,re_level,
+ 				   b_cname
+ 			from review, book
+  			where book.b_num = review.bnum and b_cname = #{b_cname}
+  		</select>
+  		
+  		<select id="getReviewByNum" resultType="review.model.ReviewBean">
+  			select * from review where bnum = #{b_num}
+  		</select>
+  		
+  		<update id="updateReview">
+  			update review set 
+	  			rday= to_char(sysdate,'yy/MM/dd HH24:mi'),
+	  			rimage = #{rimage},
+	  			rcontent = #{rcontent}
+  			where bnum = #{bnum} and reviewer = #{reviewer}
+  		</update>
+  </mapper>

@@ -1,0 +1,26 @@
+
+drop table board cascade constraints;
+
+create table board( 
+	num number not null primary key, 
+	writer varchar2(100) not null, -- ÀÛ¼ºÀÚ
+	email varchar2(100),
+	subject varchar2(2000) not null,
+	img varchar2(100),
+	passwd varchar2(120) not null,
+	reg_date date not null,
+	readcount int default 0,
+	ref number not null,
+	re_step number not null,
+	re_level number not null,
+	content varchar2(4000) not null,
+	ip varchar2(150) not null
+);
+
+drop sequence board_seq;
+create sequence board_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;

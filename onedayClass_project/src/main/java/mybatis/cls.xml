@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+	<mapper namespace="cls.model.Cls">
+		<select id="getClsList" resultType="cls.model.ClsBean">
+			select * from cls order by cnum desc
+		</select>
+		<select id="getClsListTotalCount" resultType="int">
+			select count(*) from cls
+		</select>
+		
+		<insert id="insertCls">
+			insert into cls(cnum,cname,ctime,cprice,cinfo,ccontent,cimage1,cimage2,cimage3)
+			values(clsseq.nextval,#{cname}, #{ctime},#{cprice},
+			#{cinfo},#{ccontent},#{cimage1},#{cimage2},#{cimage3})
+		</insert>
+		
+		<select id="getClsByNum" resultType="cls.model.ClsBean">
+			select * from cls where cnum = #{cnum}
+		</select>
+		
+		<update id="updateCls">
+			update cls 
+			set cname=#{cname},ctime=#{ctime},cprice=#{cprice},cinfo=#{cinfo},
+			ccontent=#{ccontent},cimage1=#{cimage1},cimage2=#{cimage2},cimage3=#{cimage3}
+			where cnum = #{cnum}
+		</update>
+		
+		<update id="updateAddress">
+			update cls set caddress=#{caddress}, clocation=#{clocation}
+		</update>
+		
+		<delete id="deleteCls">
+			delete from cls where cnum = #{cnum}
+		</delete>
+		
+		<select id="getClsAddress" resultType="cls.model.ClsBean">
+			select distinct caddress, clocation from cls
+		</select>
+		
+		<select id="getCtimeBycname" resultType="int">
+			select ctime from cls where cname=#{cname}
+		</select>
+	</mapper>

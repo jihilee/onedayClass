@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+	<mapper namespace="cate.model.Scate">
+	
+		<delete id="deleteFrgCate">
+			delete from scate
+			where bcate = #{bcate}
+		</delete>
+		
+		<select id="getScateListTotalCount" resultType="int">
+			select count(*) from scate
+			<if test="whatColumn == 'bcate'">
+				where bcate like #{keyword} 
+			</if>
+			<if test="whatColumn == 'scate'">
+				where scate like #{keyword} 
+			</if>
+		</select>
+		
+		<select id="getScateList" resultType="cate.model.ScateBean">
+			select * from scate
+			<if test="whatColumn == 'bcate'">
+				where bcate like #{keyword} 
+			</if>
+			<if test="whatColumn == 'scate'">
+				where scate like #{keyword} 
+			</if>
+			order by scatenum desc
+		</select>
+		
+		<select id="getScateByNum" resultType="cate.model.ScateBean">
+			select * from scate
+			where scatenum = #{scatenum}
+		</select>
+		
+		<select id="checkScate" resultType="int">
+			select count(*) from scate
+			where scate = #{scate}
+		</select>
+		
+		<update id="updateScate">
+			update scate 
+			set bcate = #{bcate}, scate = #{scate} 
+			where scatenum = #{scatenum}
+		</update>
+		
+		<delete id="deleteScate">
+			delete from scate
+			where scatenum = #{scatenum}
+		</delete>
+		
+		<insert id="insertScate">
+			insert into scate
+			values(scateseq.nextval,#{bcate},#{scate})
+		</insert>
+	</mapper>

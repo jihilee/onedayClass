@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+	<mapper namespace="member.model.Member">
+		<select id="memberCheck" resultType="int">
+			select count(*) 
+			from member 
+			where id=#{id} and pw=#{pw}
+		</select>
+		
+		<select id="getMemberId" resultType="member.model.MemberBean">
+			select *
+			from member 
+			where id=#{id} and pw=#{pw}
+		</select>
+		
+		<select id="getCheckById" resultType="member.model.MemberBean">
+			select *
+			from member 
+			where id=#{id}
+		</select>
+		
+		<insert id="joinMember">
+			insert into member(num,name,id,pw,email,ph) 
+			values(memseq.nextval,#{name},#{id},#{pw},#{email},#{ph})
+		</insert>
+		
+		<select id="findId" resultType="member.model.MemberBean">
+			select * from member 
+			where email=#{email} and name=#{name}
+		</select>
+		
+		<select id="findPw" resultType="member.model.MemberBean">
+			select * from member 
+			where email=#{email} and name=#{name} and id=#{id} 
+		</select>
+		
+		<update id="updateTempw">
+			update member set pw = #{pw} 
+			where name=#{name} and id=#{id} and email = #{email} 
+		</update>
+		
+		<select id="getMemberList" resultType="member.model.MemberBean">
+			select * from member 
+			<if test="whatColumn == 'name'">
+				where name like #{keyword} 
+			</if>
+			<if test="whatColumn == 'id'">
+				where id like #{keyword} 
+			</if>
+			<if test="whatColumn == 'email'">
+				where email like #{keyword} 
+			</if>
+			order by num
+		</select>
+		<select id="getMemberListTotalCount" resultType="int">
+			select count(*) from member 
+			<if test="whatColumn == 'name'">
+				where name like #{keyword} 
+			</if>
+			<if test="whatColumn == 'id'">
+				where id like #{keyword} 
+			</if>
+			<if test="whatColumn == 'email'">
+				where email like #{keyword} 
+			</if>
+			order by num
+		</select>
+		
+		<select id="emailcheck" resultType="int">
+			select count(*) from member
+			where email = #{email}
+		</select>
+		
+		<update id="myDataUpdate">
+			update member 
+			set name=#{name}, pw=#{pw}, email=#{email}, ph=#{ph}
+			where num = #{num}
+		</update>
+		
+		<select id="CheckAdminIdDul" resultType="int">
+			select count(*) from member where id=#{id}
+		</select>
+		
+		<update id="updateAdminData">
+			update member 
+			set name=#{name}, id=#{id}, pw=#{pw}, 
+			email=#{email}, ph=#{ph}
+			where num=#{num}
+		</update>
+		
+		<select id="CheckAdminEmailDul" resultType="int">
+			select count(*) from member where email=#{email}
+		</select>
+	</mapper>
