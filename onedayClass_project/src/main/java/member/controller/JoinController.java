@@ -23,7 +23,7 @@ public class JoinController {
 
 	private final String command = "join.mb";
 	private final String idCheck = "joinIdCheck.mb";
-	
+
 	private String getPage = "/join";
 	//private String gotoLogin = "redirect:/loginForm.mb";
 
@@ -32,6 +32,25 @@ public class JoinController {
 	
 	@RequestMapping(value=command,method=RequestMethod.GET)
 	public String joinform() {
+		int[] a= {1,2,3,4,5,6,7,8,9,10};
+		int max=-1;
+		int min=101;
+		int sum=0;
+		double avg;
+		
+		for(int i=0;i<a.length;i++) {
+			max = Math.max(max,a[i]);
+			min = Math.min(max,a[i]);
+		}
+		System.out.println(max+"/"+min);
+		
+		for(int i=0;i<a.length;i++) {
+			if(i!=max && i!=min) {
+				sum += sum+i;
+			}
+		}
+		avg = Math.round(sum/(a.length-2));
+		
 		return getPage;
 	}
 	

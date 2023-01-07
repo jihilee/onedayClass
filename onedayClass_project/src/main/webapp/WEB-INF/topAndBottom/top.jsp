@@ -43,7 +43,6 @@
                         </c:if>
                         <li class="nav-item"><a class="nav-link" href="GuestClsMain.cls?id=#Cls" >CLASS</a></li>
                         <li class="nav-item"><a class="nav-link" href="GuestClsMain.cls?id=#info">INFO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="GuestClsMain.cls?id=#contact">CONTACT</a></li>
                         <c:if test="${loginInfo ne null }">
                         <li class="nav-item"><a class="nav-link" href="logout.mb">Logout</a></li>
                         </c:if>

@@ -52,24 +52,6 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<!-- board -->
-	<servlet>
-		<servlet-name>board</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/board-servlet.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>board</servlet-name>
-		<url-pattern>*.bd</url-pattern>
-	</servlet-mapping>
 	
 	<!-- member -->
 	<servlet>
@@ -105,24 +87,6 @@
 	<servlet-mapping>
 		<servlet-name>cls</servlet-name>
 		<url-pattern>*.cls</url-pattern>
-	</servlet-mapping>
-	
-	<!-- cate -->
-	<servlet>
-		<servlet-name>cate</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/cate-servlet.xml
-			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>cate</servlet-name>
-		<url-pattern>*.cate</url-pattern>
 	</servlet-mapping>
 	
 	<!-- book -->

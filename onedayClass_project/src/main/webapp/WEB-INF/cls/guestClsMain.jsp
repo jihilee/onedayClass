@@ -144,7 +144,9 @@
      <!-- oneday class-->
      <section class="page-section bg-dark text-white" id="info"><br><br>
     	<h2 class="text-center mt-0">BBWOOD INFO</h2><br>
-                <hr class="divider" /><br>
+                <hr class="divider" /><br><br>
+           		<h5 class="text-center">안녕하세요 &nbsp; 합정동과 망원동 중간에 위치한 목공방 비비우드 스튜디오입니다 </h5>
+                <br><br>
     	<div id="map" style="width: 100%; height: 400px;"></div>
 		<br>
 		<script type="text/javascript"
@@ -175,71 +177,15 @@
 			// marker.setMap(null);
 		</script>
 
+		<br><br>
+		 <h6 class="text-center">주소 : 서울 마포구 월드컵로7길 122 B1 비비우드스튜디오</h6>
+		 <br>
+		 
 	     <div class="container px-4 px-lg-5 text-center">
 	       <input type="button" value="길찾기" class="btn btn-light btn-xl"
 	      onclick="location.href='https://map.kakao.com/link/to/bbwoodsutdio,37.55174, 126.90572'" />    
 		 </div>
+		 
 	</section>  
-     
-<style>
-	.err {
-		font-size: 8pt;
-		color: red;
-		font-weight: bold;
-}
-</style>        
-        
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">문의</h2>
-                        <hr class="divider" />
-                        <p class="text-muted mb-5">원데이 클래스 관련하여 궁금하신 점이 있다면 모든 남겨주세요!</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div class="col-lg-6">
-                        <form:form commandName="board" method="post" name="boardInsertForm" action="boardInsert.bd" enctype="multipart/form-data" >
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" name="name" value="${board.name }" type="text" placeholder="성함을 입력해주세요"/>
-                                <label for="name">성함</label>
-                            </div>
-                            <form:errors cssClass="err" path="name"/>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" name="email" value="${board.email }" type="text" placeholder="abc@example.com"/>
-                                <label for="email">이메일</label>
-                            </div>
-							<form:errors cssClass="err" path="email"/>
-                            <!-- content input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="content" name="content" value="${board.content }" placeholder="문의내용입니다" style="height: 10rem"></textarea>
-                                <label for="content">문의사항을 입력하세요</label>
-                                <form:errors cssClass="err" path="content"/>
-                            </div>
-                            <!-- pw input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="pw" name="pw" type="password" placeholder="비밀번호를 입력해주세요"/>
-                                <label for="pw">비밀번호</label>
-                                <form:errors cssClass="err" path="password"/>
-                            </div>
-                            
-                            <div class="d-grid">
-                            	<input class="btn btn-primary btn-xl" type="submit" value="문의하기">
-                            </div>
-                        </form:form>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
-                        <i class="bi-phone fs-2 mb-3 text-muted"></i>
-                        <div>+82 010-123-4567</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-       
+	
  <%@ include file="/WEB-INF/topAndBottom/bottom.jsp" %>

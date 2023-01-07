@@ -7,7 +7,6 @@
 <configuration>
 
 	<mappers>
-		<mapper resource ="mybatis/board.xml"/>
 		<mapper resource ="mybatis/member.xml"/>
 		<mapper resource ="mybatis/cls.xml"/>
 		<mapper resource ="mybatis/book.xml"/>
